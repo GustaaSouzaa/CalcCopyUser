@@ -27,3 +27,8 @@ function calcular() {
       document.querySelector("#resultado").innerHTML = "Erro: " + error;
     });
 }
+
+document.querySelector("#numero").addEventListener("input", calcular);
+document.querySelector("#tipo").addEventListener("change", calcular);
+
+document.querySelector("#submit").addEventListener("click", calcular);
