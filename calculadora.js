@@ -7,12 +7,23 @@ function calcular() {
     return;
   }
 
+  if (isNaN(numero)) {
+    document.querySelector("#resultado").innerHTML = "O número deve ser um número.";
+    return;
+  }
+
   const resultado = 300 / numero;
 
-  document.querySelector("#resultado").innerHTML = `${tipo}: ${resultado}%`;
+  // Alterado para GET
+  fetch(`calculadora.php?tipo=${tipo}&numero=${numero}`)
+    .then((response) => {
+      if (response.status === 200) {
+        document.querySelector("#resultado").innerHTML = `${tipo}: ${resultado}%`;
+      } else {
+        document.querySelector("#resultado").innerHTML = "Erro: " + response.status;
+      }
+    })
+    .catch((error) => {
+      document.querySelector("#resultado").innerHTML = "Erro: " + error;
+    });
 }
-
-document.querySelector("#numero").addEventListener("input", calcular);
-document.querySelector("#tipo").addEventListener("change", calcular);
-
-document.querySelector("#submit").addEventListener("click", calcular);
