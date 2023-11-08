@@ -14,9 +14,9 @@ function calcular() {
 
   const resultado = 300 / numero;
 
-  // Alterado para POST
+  // Alterado para PUT
   fetch('calculadora.php', {
-    method: 'POST',
+    method: 'PUT',
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded'
     },
